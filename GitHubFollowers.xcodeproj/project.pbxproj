@@ -115,7 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				C5C9572A2527D8CA000D358A /* GitHubFollowers */,
-				C5C957392527D8D6000D358A /* Info.plist */,
 				C5C957292527D8CA000D358A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -131,6 +130,7 @@
 		C5C9572A2527D8CA000D358A /* GitHubFollowers */ = {
 			isa = PBXGroup;
 			children = (
+				C5C957392527D8D6000D358A /* Info.plist */,
 				C5B51005252FBF4B00D90A39 /* Model */,
 				C5AD1D1A252E756D00F3BED0 /* Custom Views */,
 				C5AD1D19252E753300F3BED0 /* Screens */,
