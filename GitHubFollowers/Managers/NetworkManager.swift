@@ -20,13 +20,13 @@ class NetworkManager {
     ///     - username: which username to get followers
     ///     - page: for pagination of scrolling
     ///     - completed: completion handler (closrue) that return either an array of followers or an error message - one or the other
-    func getFollowers(for username: String, page: Int, completed: @escaping([Follower]?,String?) -> Void){
+    func getFollowers(for username: String, page: Int, completed: @escaping([Follower]?, ErrorMessage?) -> Void){
         // get url
         let endpoint = baseURL + "\(username)/followers?per_page=100&page=\(page)"
         
         // if we get dont get a valid url
         guard let url = URL(string: endpoint) else {
-            completed(nil, "this username created an invalid request. Please try again")
+            completed(nil, .invalidUsername)
             return
         }
         
@@ -35,18 +35,18 @@ class NetworkManager {
             
             // if error exists from request
             if let _ = error{
-                completed(nil, "unable to complete your request. Please check your internet connection")
+                completed(nil, .unableToComplete)
             }
             
             // if response is valid from request and is status 200 OK
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completed(nil, "invalid response from server. Please try again")
+                completed(nil, .invalidResponse)
                 return
             }
             
             // if data is not nil
             guard let data = data else {
-                completed(nil,"the data received from the server was invalid. Please try again")
+                completed(nil, .invalidData)
                 return
             }
             
@@ -62,7 +62,7 @@ class NetworkManager {
                 let followers = try decoder.decode([Follower].self, from: data)
                 completed(followers,nil)
             } catch {
-                completed(nil, "the data received from the server was invalid. Please try again")
+                completed(nil, .invalidData)
             }
         }
         // make sure to call to fire off API
