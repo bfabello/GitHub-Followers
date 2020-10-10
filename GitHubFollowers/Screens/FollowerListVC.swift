@@ -10,12 +10,38 @@ import UIKit
 class FollowerListVC: UIViewController {
 
     var userName: String!
+    var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureViewController()
+        configureCollectionView()
+        getFollowers()
+    }
+    
+    func configureViewController(){
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool){
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated:true)
+    }
+    
+    func configureCollectionView(){
+        // fills up whole screen on view
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewFlowLayout())
+    
+        // have to init CollectionView before adding it to subview
+        view.addSubview(collectionView)
+        collectionView.backgroundColor = .systemPink
         
+        // register the cell
+        collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseID)
+    }
+    
+    func getFollowers(){
         NetworkManager.shared.getFollowers(for: userName, page: 1) { (result) in
             
             switch result {
@@ -26,10 +52,5 @@ class FollowerListVC: UIViewController {
                     self.presentGFAlertOnMainThread(title: "Bad Stuff Happened", message: error.rawValue, buttonTitle: "Ok")
             }
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool){
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated:true)
     }
 }
