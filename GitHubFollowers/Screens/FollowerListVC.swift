@@ -31,7 +31,7 @@ class FollowerListVC: UIViewController {
     
     func configureCollectionView(){
         // fills up whole screen on view
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewFlowLayout())
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createThreeColummnFlowLayout())
     
         // have to init CollectionView before adding it to subview
         view.addSubview(collectionView)
@@ -39,6 +39,10 @@ class FollowerListVC: UIViewController {
         
         // register the cell
         collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseID)
+    }
+    
+    func createThreeColummnFlowLayout() -> UICollectionViewFlowLayout {
+        return UICollectionViewFlowLayout()
     }
     
     func getFollowers(){
