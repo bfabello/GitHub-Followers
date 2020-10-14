@@ -4,19 +4,25 @@
 //
 //  Created by Brian Fabello on 10/6/20.
 //
-
+ 
 import UIKit
 
 class FollowerListVC: UIViewController {
-
+    
+    enum Section{
+        case main
+    }
+    
     var userName: String!
     var collectionView: UICollectionView!
+    var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
         configureCollectionView()
         getFollowers()
+        configureDataSource()
     }
     
     func configureViewController(){
@@ -67,4 +73,13 @@ class FollowerListVC: UIViewController {
             }
         }
     }
+    
+    func configureDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Section,Follower>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, follower) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FollowerCell.reuseID, for: indexPath) as! FollowerCell
+            cell.set(follower: follower)
+            return cell
+        })
+    }
+    
 }
