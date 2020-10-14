@@ -2,7 +2,6 @@
   "images" : [
     {
       "idiom" : "universal",
-      "locale" : "iOS",
       "scale" : "1x"
     },
     {
@@ -13,13 +12,11 @@
         }
       ],
       "idiom" : "universal",
-      "locale" : "iOS",
       "scale" : "1x"
     },
     {
       "filename" : "avatar-placeholder@2x.png",
       "idiom" : "universal",
-      "locale" : "iOS",
       "scale" : "2x"
     },
     {
@@ -31,13 +28,11 @@
       ],
       "filename" : "avatar-placeholder-dark@2x.png",
       "idiom" : "universal",
-      "locale" : "iOS",
       "scale" : "2x"
     },
     {
       "filename" : "avatar-placeholder@3x.png",
       "idiom" : "universal",
-      "locale" : "iOS",
       "scale" : "3x"
     },
     {
@@ -49,7 +44,6 @@
       ],
       "filename" : "avatar-placeholder-dark@3x.png",
       "idiom" : "universal",
-      "locale" : "iOS",
       "scale" : "3x"
     }
   ],
