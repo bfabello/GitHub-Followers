@@ -39,7 +39,7 @@ class FollowerListVC: UIViewController {
     
     func configureCollectionView(){
         // fills up whole screen on view
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createThreeColumnFlowLayout())
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
     
         // have to init CollectionView before adding it to subview
         view.addSubview(collectionView)
@@ -47,21 +47,6 @@ class FollowerListVC: UIViewController {
         
         // register the cell
         collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseID)
-    }
-    
-    func createThreeColumnFlowLayout() -> UICollectionViewFlowLayout {
-        let columns: CGFloat = 3
-        let width = view.bounds.width
-        let padding: CGFloat = 12
-        let minimumItemSpacing :CGFloat = 10
-        let availableWidth = width - (padding * 2) - (minimumItemSpacing * 2)
-        let itemWidth = availableWidth / columns
-        
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
-        flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth + 40)
-        
-        return flowLayout
     }
     
     func getFollowers(){

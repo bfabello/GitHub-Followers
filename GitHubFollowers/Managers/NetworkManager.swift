@@ -14,7 +14,7 @@ class NetworkManager {
     let baseURL = "https://api.github.com/users/"
     
     private init(){}
-    
+     
     /// Get followers from github API
     /// - Parameters:
     ///     - username: which username to get followers
