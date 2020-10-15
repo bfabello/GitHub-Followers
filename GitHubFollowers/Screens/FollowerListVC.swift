@@ -43,7 +43,7 @@ class FollowerListVC: UIViewController {
     
         // have to init CollectionView before adding it to subview
         view.addSubview(collectionView)
-        collectionView.backgroundColor = .systemPink
+        collectionView.backgroundColor = .systemBackground
         
         // register the cell
         collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseID)
@@ -65,7 +65,11 @@ class FollowerListVC: UIViewController {
     }
     
     func getFollowers(){
-        NetworkManager.shared.getFollowers(for: userName, page: 1) { (result) in
+        NetworkManager.shared.getFollowers(for: userName, page: 1) { [weak self] (result) in
+            // use capture list [weak self] to fix potential memory leaks
+            // unwraping optional of self so we dont need optional values for each call of self
+            // introduced in Swift 4.2
+            guard let self = self else { return }
             
             switch result {
                 case .success(let followers):
@@ -86,6 +90,7 @@ class FollowerListVC: UIViewController {
         })
     }
     
+    // real time updating snapshot
     func updateData(){
         var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
         snapshot.appendSections([.main])
