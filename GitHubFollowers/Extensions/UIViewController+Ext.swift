@@ -9,6 +9,7 @@ import UIKit
 
 fileprivate var containerView: UIView!
 
+
 extension UIViewController {
     
     // any view controller can call this function on main thread
@@ -50,6 +51,12 @@ extension UIViewController {
             containerView.removeFromSuperview()
             containerView = nil
         }
+        
+    }
+    func showEmptyStateView(with message: String, in view: UIView){
+        let emptyStateView = GFEmptyStateView(message: message)
+        emptyStateView.frame = view.bounds
+        view.addSubview(emptyStateView)
         
     }
 }
