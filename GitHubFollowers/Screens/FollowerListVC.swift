@@ -53,12 +53,13 @@ class FollowerListVC: UIViewController {
     }
     
     func getFollowers(username: String, page: Int){
+        showLoadingView()
+        // use capture list [weak self] to fix potential memory leaks
         NetworkManager.shared.getFollowers(for: userName, page: page) { [weak self] (result) in
-            // use capture list [weak self] to fix potential memory leaks
             // unwraping optional of self so we dont need optional values for each call of self
             // introduced in Swift 4.2
             guard let self = self else { return }
-            
+            self.dismissLoadingView()
             switch result {
                 case .success(let followers):
                     if followers.count < 100 { self.hasMoreFollowers = false }
@@ -67,6 +68,7 @@ class FollowerListVC: UIViewController {
                 
                 case .failure(let error):
                     self.presentGFAlertOnMainThread(title: "Bad Stuff Happened", message: error.rawValue, buttonTitle: "Ok")
+                    
             }
         }
     }
