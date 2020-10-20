@@ -15,6 +15,7 @@ class FollowerListVC: UIViewController {
     
     var userName: String!
     var followers: [Follower] = []
+    var filteredFollowers: [Follower] = []
     var page = 1
     var hasMoreFollowers = true
     
@@ -57,6 +58,8 @@ class FollowerListVC: UIViewController {
         let searchController = UISearchController()
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Search for a username"
+        // doesnt make screen semi transparent when search bar is clicked
+        searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
         
     }
@@ -84,7 +87,7 @@ class FollowerListVC: UIViewController {
                         }
                         return
                     }
-                    self.updateData()
+                    self.updateData(on: self.followers)
                 
                 case .failure(let error):
                     self.presentGFAlertOnMainThread(title: "Bad Stuff Happened", message: error.rawValue, buttonTitle: "Ok")
@@ -102,7 +105,7 @@ class FollowerListVC: UIViewController {
     }
     
     // real time updating snapshot
-    func updateData(){
+    func updateData(on followers: [Follower]){
         var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
         snapshot.appendSections([.main])
         snapshot.appendItems(followers)
@@ -132,8 +135,13 @@ extension FollowerListVC: UICollectionViewDelegate {
 
 extension FollowerListVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
+        // make sure there is text in search bar
+        guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }
         
+        // $0 - represents the item
+        // login.lowercased() - so caseing does not matter
+        filteredFollowers = followers.filter { $0.login.lowercased().contains(filter.lowercased()) }
+        updateData(on: filteredFollowers)
     }
-    
-    
 }
+
