@@ -24,6 +24,7 @@ class FollowerListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
+        configureSearchController()
         configureCollectionView()
         getFollowers(username: userName, page: page)
         configureDataSource()
@@ -50,6 +51,14 @@ class FollowerListVC: UIViewController {
         
         // register the cell
         collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseID)
+    }
+    
+    func configureSearchController(){
+        let searchController = UISearchController()
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Search for a username"
+        navigationItem.searchController = searchController
+        
     }
     
     func getFollowers(username: String, page: Int){
@@ -119,4 +128,12 @@ extension FollowerListVC: UICollectionViewDelegate {
             
         }
     }
+}
+
+extension FollowerListVC: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+    
+    
 }
