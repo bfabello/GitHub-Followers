@@ -56,8 +56,14 @@ class FollowerListVC: UIViewController {
     
     func configureSearchController(){
         let searchController = UISearchController()
+        
+        // conform to UISearchResultsUpdating protocol
         searchController.searchResultsUpdater = self
+        
+        // conform to protocol UISearchBarDelegate
+        searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search for a username"
+        
         // doesnt make screen semi transparent when search bar is clicked
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
@@ -133,7 +139,7 @@ extension FollowerListVC: UICollectionViewDelegate {
     }
 }
 
-extension FollowerListVC: UISearchResultsUpdating {
+extension FollowerListVC: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         // make sure there is text in search bar
         guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }
@@ -142,6 +148,10 @@ extension FollowerListVC: UISearchResultsUpdating {
         // login.lowercased() - so caseing does not matter
         filteredFollowers = followers.filter { $0.login.lowercased().contains(filter.lowercased()) }
         updateData(on: filteredFollowers)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        updateData(on: followers)
     }
 }
 
