@@ -122,6 +122,9 @@ class FollowerListVC: UIViewController {
     }
 }
 
+// MARK: - Extensions
+
+// UICollectionView Delegates
 extension FollowerListVC: UICollectionViewDelegate {
     
     // listening for when user scrolls all the way to the bottom of screen
@@ -156,6 +159,7 @@ extension FollowerListVC: UICollectionViewDelegate {
     }
 }
 
+// Search Delegates
 extension FollowerListVC: UISearchResultsUpdating, UISearchBarDelegate {
     
     // listening when user types in search bar
