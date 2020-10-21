@@ -18,6 +18,7 @@ class FollowerListVC: UIViewController {
     var filteredFollowers: [Follower] = []
     var page = 1
     var hasMoreFollowers = true
+    var isSearching = false
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
@@ -122,6 +123,8 @@ class FollowerListVC: UIViewController {
 }
 
 extension FollowerListVC: UICollectionViewDelegate {
+    
+    // listening for when user scrolls all the way to the bottom of screen
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         // coordinates of how far you scroll down
         let offsetY = scrollView.contentOffset.y
@@ -137,20 +140,39 @@ extension FollowerListVC: UICollectionViewDelegate {
             
         }
     }
+    
+    // listening to what item the user taps on
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // turnary operator - WTF = What ? True : False
+        // clean to use for basic if else statements
+        let activeArray = isSearching ? filteredFollowers : followers
+        
+        // get specific follower from array with indexPath
+        let follower = activeArray[indexPath.item]
+        
+        let destinationVC = UserInfoVC()
+        let navController = UINavigationController(rootViewController: destinationVC)
+        present(navController, animated: true)
+    }
 }
 
 extension FollowerListVC: UISearchResultsUpdating, UISearchBarDelegate {
+    
+    // listening when user types in search bar
     func updateSearchResults(for searchController: UISearchController) {
         // make sure there is text in search bar
         guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }
-        
+        isSearching = true
         // $0 - represents the item
         // login.lowercased() - so caseing does not matter
         filteredFollowers = followers.filter { $0.login.lowercased().contains(filter.lowercased()) }
         updateData(on: filteredFollowers)
     }
     
+    // listening when user clicks cancel button on search bar
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        // can use .toggle() for Bool
+        isSearching = false
         updateData(on: followers)
     }
 }

@@ -29,11 +29,14 @@ class SearchVC: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated:true)
     }
     
+    // when you click outside keyboard
     func createDismissKeyboardTapGesture(){
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
     }
     
+    // pass text field data to followerListVC
+    // push VC onto stack
     @objc func pushFollowerListVC(){
         
         guard isUsernameEntered else {
@@ -85,6 +88,7 @@ class SearchVC: UIViewController {
 }
 
 extension SearchVC: UITextFieldDelegate{
+    // when you press the button 'go' button on keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         pushFollowerListVC()
         return true
