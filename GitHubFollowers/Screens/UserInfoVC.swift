@@ -9,6 +9,8 @@ import UIKit
 
 class UserInfoVC: UIViewController {
 
+    var username: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
