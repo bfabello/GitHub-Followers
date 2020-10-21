@@ -1,8 +1,8 @@
 //
-//  ErrorMessage.swift
+//  GFError.swift
 //  GitHubFollowers
 //
-//  Created by Brian Fabello on 10/9/20.
+//  Created by Brian Fabello on 10/21/20.
 //
 
 import Foundation
