@@ -148,6 +148,7 @@ extension FollowerListVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // turnary operator - WTF = What ? True : False
         // clean to use for basic if else statements
+        // 
         let activeArray = isSearching ? filteredFollowers : followers
         
         // get specific follower from array with indexPath
