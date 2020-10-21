@@ -13,6 +13,7 @@ class SearchVC: UIViewController {
     let usernameTextField = GFTextField()
     let callToActionButton = GFButton(backgroundColor: .systemGreen, title: "Get Followers")
     
+    // computed property
     var isUsernameEntered: Bool { return !usernameTextField.text!.isEmpty }
         
     override func viewDidLoad() {
@@ -38,7 +39,7 @@ class SearchVC: UIViewController {
     // pass text field data to followerListVC
     // push VC onto stack
     @objc func pushFollowerListVC(){
-        
+        // nothing below this line will happen unless this guard statement is true
         guard isUsernameEntered else {
             presentGFAlertOnMainThread(title: "Empty Username", message: "Please enter a username. We need to know who to look for 😀", buttonTitle: "Ok")
             return
@@ -76,6 +77,7 @@ class SearchVC: UIViewController {
     
     func configureCallToActionButton(){
         view.addSubview(callToActionButton)
+        // whenever we tap get followers button, pushFollowersListVC will be called
         callToActionButton.addTarget(self, action: #selector(pushFollowerListVC), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
