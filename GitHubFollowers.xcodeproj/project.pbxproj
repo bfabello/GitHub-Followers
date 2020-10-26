@@ -31,6 +31,7 @@
 		C5C9572E2527D8CA000D358A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C9572D2527D8CA000D358A /* SceneDelegate.swift */; };
 		C5C957352527D8D6000D358A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5C957342527D8D6000D358A /* Assets.xcassets */; };
 		C5C957382527D8D6000D358A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5C957362527D8D6000D358A /* LaunchScreen.storyboard */; };
+		C5E90DC82547894500C6529C /* GFItemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E90DC72547894500C6529C /* GFItemInfoView.swift */; };
 		C5FB098B2527E098001E1A6C /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB098A2527E098001E1A6C /* SearchVC.swift */; };
 		C5FB098F2527E0CB001E1A6C /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB098E2527E0CB001E1A6C /* FavoritesVC.swift */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,7 @@
 		C5C957342527D8D6000D358A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5C957372527D8D6000D358A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C5C957392527D8D6000D358A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5E90DC72547894500C6529C /* GFItemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFItemInfoView.swift; sourceTree = "<group>"; };
 		C5FB098A2527E098001E1A6C /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		C5FB098E2527E0CB001E1A6C /* FavoritesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +84,7 @@
 			children = (
 				C5B51001252FBB5C00D90A39 /* GFView.swift */,
 				C52BBEE1253E4F41008585A0 /* GFEmptyStateView.swift */,
+				C5E90DC72547894500C6529C /* GFItemInfoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				C584B14E2538FAAF00D79355 /* UIHelper.swift in Sources */,
 				C5B51014252FC6A300D90A39 /* NetworkManager.swift in Sources */,
 				C5C9572C2527D8CA000D358A /* AppDelegate.swift in Sources */,
+				C5E90DC82547894500C6529C /* GFItemInfoView.swift in Sources */,
 				C5C9572E2527D8CA000D358A /* SceneDelegate.swift in Sources */,
 				C53F4E4F254257EB0000995D /* Constants.swift in Sources */,
 			);
