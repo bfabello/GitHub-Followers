@@ -7,6 +7,11 @@
 
 import UIKit
 
+// item info types inside container cards
+enum ItemInfoType {
+    case repos, gists, followers, following
+}
+
 class GFItemInfoView: UIView {
 
     let symbolImageView = UIImageView()
@@ -51,6 +56,29 @@ class GFItemInfoView: UIView {
             countLabel.heightAnchor.constraint(equalToConstant: 18)
         ])
         
+    }
+    
+    // formatting item info view
+    // pass in an item info type and corresponding case will set correct items
+    func set(itemInfoType: ItemInfoType, withCount count: Int){
+        switch itemInfoType {
+            case .repos:
+                symbolImageView.image = UIImage(systemName: SFSymbols.repos)
+                titleLabel.text = "Public Repos"
+                countLabel.text = String(count)
+            case .gists:
+                symbolImageView.image = UIImage(systemName: SFSymbols.gists)
+                titleLabel.text = "Public Gists"
+                countLabel.text = String(count)
+            case .followers:
+                symbolImageView.image = UIImage(systemName: SFSymbols.followers)
+                titleLabel.text = "Followers"
+            case .following:
+                symbolImageView.image = UIImage(systemName: SFSymbols.following)
+                titleLabel.text = "Following"
+        }
+        countLabel.text = String(count)
+
     }
     
 }
