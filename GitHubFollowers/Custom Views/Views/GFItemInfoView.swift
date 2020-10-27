@@ -4,6 +4,7 @@
 //
 //  Created by Brian Fabello on 10/26/20.
 //
+// Configure reusable UIView with SF symbol, title, and count 
 
 import UIKit
 
