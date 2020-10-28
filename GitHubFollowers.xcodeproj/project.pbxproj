@@ -122,11 +122,9 @@
 		C52BBEDF253E4ED8008585A0 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				C59AEED82548EEBE0030B52A /* ItemInfoVCs */,
 				C5AD1D0F252D3E1B00F3BED0 /* GFAlertVC.swift */,
 				C53F4E4B25424DFE0000995D /* GFUserInfoHeaderVC.swift */,
-				C5E90DCA2547980E00C6529C /* GFItemInfoVC.swift */,
-				C59AEECE2548E1D00030B52A /* GFRepoItemVC.swift */,
-				C59AEED52548EE0B0030B52A /* GFFollowerItemVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -147,6 +145,16 @@
 				C599220F253134F8005F6476 /* FollowerCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		C59AEED82548EEBE0030B52A /* ItemInfoVCs */ = {
+			isa = PBXGroup;
+			children = (
+				C5E90DCA2547980E00C6529C /* GFItemInfoVC.swift */,
+				C59AEECE2548E1D00030B52A /* GFRepoItemVC.swift */,
+				C59AEED52548EE0B0030B52A /* GFFollowerItemVC.swift */,
+			);
+			path = ItemInfoVCs;
 			sourceTree = "<group>";
 		};
 		C5AD1D19252E753300F3BED0 /* Screens */ = {
