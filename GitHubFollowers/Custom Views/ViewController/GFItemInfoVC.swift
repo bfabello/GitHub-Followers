@@ -14,6 +14,7 @@ class GFItemInfoVC: UIViewController {
     let itemInfoViewOne = GFItemInfoView()
     let itemInfoViewTwo = GFItemInfoView()
     let actionButton = GFButton()
+    
     var user: User!
     
     init(user: User){
