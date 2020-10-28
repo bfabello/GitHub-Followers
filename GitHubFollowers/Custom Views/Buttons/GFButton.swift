@@ -34,6 +34,6 @@ class GFButton: UIButton {
     // set button with custom background color and title outside of initializer
     func set(backgroundColor: UIColor, title: String){
         self.backgroundColor = backgroundColor
-        setTitle(title, for: .normal)
+        self.setTitle(title, for: .normal)
     }
 }

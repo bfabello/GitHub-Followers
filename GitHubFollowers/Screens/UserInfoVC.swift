@@ -39,6 +39,8 @@ class UserInfoVC: UIViewController {
                 case .success(let user):
                     DispatchQueue.main.async {
                         self.add(childVC: GFUserInfoHeaderVC(user: user), to: self.headerView)
+                        self.add(childVC: GFRepoItemVC(user: user), to: self.itemViewOne)
+                        self.add(childVC: GFFollowerItemVC(user: user), to: self.itemViewTwo)
                     }
                 case .failure(let error):
                     self.presentGFAlertOnMainThread(title: "Bad Stuff Happened", message: error.rawValue, buttonTitle: "Ok")
@@ -50,7 +52,7 @@ class UserInfoVC: UIViewController {
         itemViews = [headerView, itemViewOne, itemViewTwo]
         let padding: CGFloat = 20
         let itemHeight: CGFloat = 140
-        
+
         for itemView in itemViews {
             view.addSubview(itemView)
             itemView.translatesAutoresizingMaskIntoConstraints = false
@@ -59,8 +61,6 @@ class UserInfoVC: UIViewController {
                 itemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             ])
         }
-        itemViewOne.backgroundColor = .systemTeal
-        itemViewTwo.backgroundColor = .systemIndigo
         
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -83,7 +83,6 @@ class UserInfoVC: UIViewController {
         // fill up whole containerView
         childVC.view.frame = containerView.bounds
         childVC.didMove(toParent: self)
-        
     }
     
     @objc func dismissVC(){
