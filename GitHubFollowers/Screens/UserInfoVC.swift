@@ -117,7 +117,13 @@ class UserInfoVC: UIViewController {
 extension UserInfoVC: UserInfoVCDelegate {
     // show safari view controller
     func didTapGitHubProfile(for user: User) {
-      
+        guard let url = URL(string: user.html_url) else {
+            presentGFAlertOnMainThread(title: "Invalid URL", message: "the url attached to this user is invalid", buttonTitle: "Ok")
+            return
+        }
+        let safariVC = SFSafariViewController(url: url)
+        safariVC.preferredControlTintColor = .systemGreen
+        present(safariVC, animated: true)
     }
     
     // dismiss VC and tell follower list screen the new user
