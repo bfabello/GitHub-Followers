@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import SafariServices
 
 protocol UserInfoVCDelegate: class {
-    func didTapGitHubProfile()
-    func didTapGetFollowers()
+    func didTapGitHubProfile(for user: User)
+    func didTapGetFollowers(for user: User)
 }
 
 class UserInfoVC: UIViewController {
@@ -114,16 +115,13 @@ class UserInfoVC: UIViewController {
 }
 
 extension UserInfoVC: UserInfoVCDelegate {
-    
     // show safari view controller
-    func didTapGitHubProfile() {
+    func didTapGitHubProfile(for user: User) {
       
     }
     
     // dismiss VC and tell follower list screen the new user
-    func didTapGetFollowers() {
-        <#code#>
+    func didTapGetFollowers(for user: User) {
+        print("didTapGetFollowers pressed")
     }
-    
-    
 }
