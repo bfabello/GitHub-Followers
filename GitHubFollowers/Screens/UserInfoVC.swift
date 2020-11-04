@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol UserInfoVCDelegate: class {
+    func didTapGitHubProfile()
+    func didTapGetFollowers()
+}
+
 class UserInfoVC: UIViewController {
     
     let headerView = UIView()
@@ -30,6 +35,7 @@ class UserInfoVC: UIViewController {
         navigationItem.rightBarButtonItem = doneButton
     }
     
+    // make network call and display data on screen
     func getUserInfo(){
         // use capture list [weak self] to fix potential memory leaks
         NetworkManager.shared.getUserInfo(for: username) { [weak self] (result) in
@@ -39,10 +45,7 @@ class UserInfoVC: UIViewController {
             switch result {
                 case .success(let user):
                     DispatchQueue.main.async {
-                        self.add(childVC: GFUserInfoHeaderVC(user: user), to: self.headerView)
-                        self.add(childVC: GFRepoItemVC(user: user), to: self.itemViewOne)
-                        self.add(childVC: GFFollowerItemVC(user: user), to: self.itemViewTwo)
-                        self.dateLabel.text = "GitHub since \(user.created_at.convertToDisplayFormat())"
+                        self.configureUIElements(with: user)
                     }
                 case .failure(let error):
                     self.presentGFAlertOnMainThread(title: "Bad Stuff Happened", message: error.rawValue, buttonTitle: "Ok")
@@ -50,6 +53,20 @@ class UserInfoVC: UIViewController {
         }
     }
     
+    func configureUIElements(with user: User){
+        let repoItemVC = GFRepoItemVC(user: user)
+        repoItemVC.delegate = self
+        
+        let followerItemVC = GFFollowerItemVC(user: user)
+        followerItemVC.delegate = self
+
+        self.add(childVC: GFUserInfoHeaderVC(user: user), to: self.headerView)
+        self.add(childVC: repoItemVC, to: self.itemViewOne)
+        self.add(childVC: followerItemVC, to: self.itemViewTwo)
+        self.dateLabel.text = "GitHub since \(user.created_at.convertToDisplayFormat())"
+    }
+    
+    // set UI constraints
     func layoutUI(){
         itemViews = [headerView, itemViewOne, itemViewTwo, dateLabel]
         let padding: CGFloat = 20
@@ -94,4 +111,19 @@ class UserInfoVC: UIViewController {
         dismiss(animated: true)
     }
 
+}
+
+extension UserInfoVC: UserInfoVCDelegate {
+    
+    // show safari view controller
+    func didTapGitHubProfile() {
+      
+    }
+    
+    // dismiss VC and tell follower list screen the new user
+    func didTapGetFollowers() {
+        <#code#>
+    }
+    
+    
 }
