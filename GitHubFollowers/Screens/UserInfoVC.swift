@@ -126,8 +126,13 @@ extension UserInfoVC: UserInfoVCDelegate {
     
     // dismiss VC and tell follower list screen the new user
     func didTapGetFollowers(for user: User) {
+        // show alert if user has 0 followers
+        guard user.followers != 0 else {
+            presentGFAlertOnMainThread(title: "No Followers", message: "This user has no followers", buttonTitle: "Ok")
+            return
+        }
+        delegate.didRequestFollowers(for: user.login)
         dismissVC()
-        
     }
     
 }
