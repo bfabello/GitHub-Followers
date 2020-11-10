@@ -191,14 +191,16 @@ extension FollowerListVC: UISearchResultsUpdating, UISearchBarDelegate {
 extension FollowerListVC: FollowerListVCDelegate {
     // get followers for that user
     func didRequestFollowers(for username: String) {
-        // reset screen and scroll back to top
+        // reset screen and set username
         self.userName = username
         title = username
+        // clear arrays of followers and filtered followers
         followers.removeAll()
         filteredFollowers.removeAll()
+        // reset page back to first page
         page = 1
+        // scroll collection view all the way to the top
         collectionView.setContentOffset(.zero, animated: true)
-        
         // call getFollowers to make network call
         getFollowers(username: username, page: page)
     }
