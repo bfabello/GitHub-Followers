@@ -55,7 +55,7 @@ class NetworkManager {
             // if all is good we handle the data
             do {
                 let decoder = JSONDecoder()
-                // use this line if you are using camel case for API variable names instead of default snake case
+                 // use this line if you are using camel case for API variable names instead of default snake case
                 // decoder.keyDecodingStrategy = .convertFromSnakeCase
                 
                 // create an array of followers with a try/catch block
