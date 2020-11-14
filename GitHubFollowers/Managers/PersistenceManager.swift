@@ -43,7 +43,7 @@ enum PersistenceManager {
                     }
                     //if save is successful return with a nil
                     // not successful return with a GFError
-                    completed(save(favorites: favorites))
+                    completed(save(favorites: retrievedFavorites))
                 case .failure(let error):
                     completed(error)
             }
