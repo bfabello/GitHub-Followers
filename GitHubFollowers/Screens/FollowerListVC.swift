@@ -128,7 +128,33 @@ class FollowerListVC: UIViewController {
     }
     
     @objc func addButtonTapped(){
-        print("add pressed")
+        showLoadingView()
+        // use capture list [weak self] to fix potential memory leaks
+        NetworkManager.shared.getUserInfo(for: userName) { [weak self] result in
+            // unwraping optional of self so we dont need optional values for each call of self
+            guard let self = self else { return }
+            self.dismissLoadingView()
+            
+            switch result {
+                case .success(let user):
+                    // create Follower object
+                    let favorite = Follower(login: user.login, avatar_url: user.avatar_url)
+                    // add favorite Follower object to persistance manager
+                    PersistenceManager.updateWith(favorite: favorite, actionType: .add) { [weak self] error in
+                        guard let self = self else { return }
+                        // if error was nil our save was good 
+                        guard let error = error  else {
+                            self.presentGFAlertOnMainThread(title: "Success!", message: "You have sucessfully added user to your favorites", buttonTitle: "Ok")
+                            return
+                        }
+                        // if not nil something went bad
+                        self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+                    }
+                // presenting failure case
+                case .failure(let error):
+                    self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+            }
+        }
     }
 }
 
