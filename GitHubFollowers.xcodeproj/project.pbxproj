@@ -39,6 +39,7 @@
 		C5E90DC82547894500C6529C /* GFItemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E90DC72547894500C6529C /* GFItemInfoView.swift */; };
 		C5E90DCB2547980E00C6529C /* GFItemInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E90DCA2547980E00C6529C /* GFItemInfoVC.swift */; };
 		C5EDDDAB255B62E6000F5434 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EDDDAA255B62E6000F5434 /* PersistenceManager.swift */; };
+		C5F78D68256889DC00628CFD /* GFTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F78D67256889DC00628CFD /* GFTabBarController.swift */; };
 		C5FB098B2527E098001E1A6C /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB098A2527E098001E1A6C /* SearchVC.swift */; };
 		C5FB098F2527E0CB001E1A6C /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB098E2527E0CB001E1A6C /* FavoritesVC.swift */; };
 /* End PBXBuildFile section */
@@ -78,6 +79,7 @@
 		C5E90DC72547894500C6529C /* GFItemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFItemInfoView.swift; sourceTree = "<group>"; };
 		C5E90DCA2547980E00C6529C /* GFItemInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFItemInfoVC.swift; sourceTree = "<group>"; };
 		C5EDDDAA255B62E6000F5434 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		C5F78D67256889DC00628CFD /* GFTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTabBarController.swift; sourceTree = "<group>"; };
 		C5FB098A2527E098001E1A6C /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		C5FB098E2527E0CB001E1A6C /* FavoritesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,6 +182,7 @@
 		C5AD1D1A252E756D00F3BED0 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				C5F78D66256889C100628CFD /* TabBarControllers */,
 				C52BBEE0253E4F00008585A0 /* Labels */,
 				C52BBEDF253E4ED8008585A0 /* ViewController */,
 				C52BBEDE253E4ECE008585A0 /* ImageView */,
@@ -269,6 +272,14 @@
 				C53F4E4E254257EB0000995D /* Constants.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		C5F78D66256889C100628CFD /* TabBarControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C5F78D67256889DC00628CFD /* GFTabBarController.swift */,
+			);
+			path = TabBarControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,6 +383,7 @@
 				C5E90DC82547894500C6529C /* GFItemInfoView.swift in Sources */,
 				C5C9572E2527D8CA000D358A /* SceneDelegate.swift in Sources */,
 				C53F4E4F254257EB0000995D /* Constants.swift in Sources */,
+				C5F78D68256889DC00628CFD /* GFTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
