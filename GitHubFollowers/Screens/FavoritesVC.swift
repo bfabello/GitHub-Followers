@@ -83,6 +83,7 @@ extension FavoritesVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    // didSelectRowAt to see follower of clicked favorite
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let favorite = favorites[indexPath.row]
         let destVC = FollowerListVC()
@@ -91,5 +92,27 @@ extension FavoritesVC: UITableViewDataSource, UITableViewDelegate {
         
         // push viewController onto stack
         navigationController?.pushViewController(destVC, animated: true)
+    }
+    
+    // swipe to delete row
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // if were not doing a delete just get out we dont want to do anything else
+        guard editingStyle == .delete else { return }
+        
+        // handle local array
+        let favorite = favorites[indexPath.row]
+        favorites.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .left)
+        
+        // handle persistance array
+        PersistenceManager.updateWith(favorite: favorite, actionType: .remove) { [weak self] error in
+            guard let self = self else { return }
+            
+            // if we have no error
+            guard let error = error else { return }
+            
+            // if we do have an error
+            self.presentGFAlertOnMainThread(title: "Unable to remove", message: error.rawValue, buttonTitle: "Ok")
+        }
     }
 }
