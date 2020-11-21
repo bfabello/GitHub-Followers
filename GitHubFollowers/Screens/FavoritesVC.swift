@@ -86,9 +86,7 @@ extension FavoritesVC: UITableViewDataSource, UITableViewDelegate {
     // didSelectRowAt to see follower of clicked favorite
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let favorite = favorites[indexPath.row]
-        let destVC = FollowerListVC()
-        destVC.userName = favorite.login
-        destVC.title = favorite.login
+        let destVC = FollowerListVC(userName: favorite.login)
         
         // push viewController onto stack
         navigationController?.pushViewController(destVC, animated: true)
