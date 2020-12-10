@@ -18,6 +18,7 @@ class GFTitleLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // used convenience init so we dont have to call configure in all our custom initializers
     convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat){
         self.init(frame: .zero)
         self.textAlignment = textAlignment
