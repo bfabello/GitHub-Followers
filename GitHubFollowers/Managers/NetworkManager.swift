@@ -123,4 +123,45 @@ class NetworkManager {
         // make sure to call to fire off API
         task.resume()
     }
+    
+    func downloadImage(from urlString: String, completed: @escaping(UIImage?) -> Void){
+        // if image is in the cache, look it up and set it
+        // else run network call below
+        let cacheKey = NSString(string: urlString)
+        if let image = cache.object(forKey: cacheKey) {
+            completed(image)
+            return
+        }
+        
+        // check if URL is valid
+        guard let url = URL(string: urlString) else {
+            completed(nil)
+            return
+        }
+        
+        // make network call
+        let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+            
+            // anytime error happens just bounce out and return instead of displaying errors
+            // combined all tasks into one guard statement to call completed once
+            guard let self = self,
+                  error == nil,
+                  let response = response as? HTTPURLResponse, response.statusCode == 200,
+                  let data = data,
+                  // if we have good data, set the image
+                  let image = UIImage(data: data) else {
+                completed(nil)
+                return
+            }
+            
+            // set image to cache after making network call
+            self.cache.setObject(image, forKey: cacheKey)
+            
+            // update anything UI on the main thread
+            DispatchQueue.main.async {
+                completed(image)
+            }
+        }
+        task.resume()
+    }
 }
