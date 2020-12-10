@@ -18,9 +18,8 @@ class GFView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(){
-        super.init(frame: .zero)
-        configure()
+    convenience init(){
+        self.init(frame: .zero)
     }
     
     private func configure(){
