@@ -22,6 +22,7 @@ class GFView: UIView {
         super.init(frame: .zero)
         configure()
     }
+    
     private func configure(){
         backgroundColor = .systemBackground
         layer.cornerRadius = 16
