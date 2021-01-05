@@ -77,8 +77,6 @@ class FollowerListVC: UIViewController {
         // conform to UISearchResultsUpdating protocol
         searchController.searchResultsUpdater = self
         
-        // conform to protocol UISearchBarDelegate
-        searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search for a username"
         
         // doesnt make screen semi transparent when search bar is clicked
@@ -208,24 +206,22 @@ extension FollowerListVC: UICollectionViewDelegate {
 }
 
 // Search Delegates
-extension FollowerListVC: UISearchResultsUpdating, UISearchBarDelegate {
+extension FollowerListVC: UISearchResultsUpdating {
     
     // listening when user types in search bar
     func updateSearchResults(for searchController: UISearchController) {
         // make sure there is text in search bar
-        guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }
+        guard let filter = searchController.searchBar.text, !filter.isEmpty else {
+            filteredFollowers.removeAll()
+            updateData(on: followers)
+            isSearching = false
+            return
+        }
         isSearching = true
         // $0 - represents the item
         // login.lowercased() - so caseing does not matter
         filteredFollowers = followers.filter { $0.login.lowercased().contains(filter.lowercased()) }
         updateData(on: filteredFollowers)
-    }
-    
-    // listening when user clicks cancel button on search bar
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        // can use .toggle() for Bool
-        isSearching = false
-        updateData(on: followers)
     }
 }
 
