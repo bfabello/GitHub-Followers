@@ -238,7 +238,7 @@ extension FollowerListVC: FollowerListVCDelegate {
         // reset page back to first page
         page = 1
         // scroll collection view all the way to the top
-        collectionView.setContentOffset(.zero, animated: true)
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         // call getFollowers to make network call
         getFollowers(username: username, page: page)
     }
