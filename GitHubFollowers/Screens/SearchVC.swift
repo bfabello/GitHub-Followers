@@ -20,6 +20,7 @@ class SearchVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        view.addSubviews(logoImageView,usernameTextField,callToActionButton)
         configureLogoImageView()
         configureTextField()
         configureCallToActionButton()
@@ -55,7 +56,6 @@ class SearchVC: UIViewController {
     }
     
     func configureLogoImageView() {
-        view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.image = Images.ghLogo
         
@@ -73,7 +73,6 @@ class SearchVC: UIViewController {
         ])
     }
     func configureTextField() {
-        view.addSubview(usernameTextField)
         usernameTextField.delegate = self
         NSLayoutConstraint.activate([
             usernameTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 48),
@@ -85,7 +84,6 @@ class SearchVC: UIViewController {
     }
     
     func configureCallToActionButton(){
-        view.addSubview(callToActionButton)
         // whenever we tap get followers button, pushFollowersListVC will be called
         callToActionButton.addTarget(self, action: #selector(pushFollowerListVC), for: .touchUpInside)
         

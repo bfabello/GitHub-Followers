@@ -34,9 +34,7 @@ class FavoriteCell: UITableViewCell {
     }
     
     private func configure(){
-        addSubview(avatarImageView)
-        addSubview(usernameLabel)
-        
+        addSubviews(avatarImageView, usernameLabel)
         // icon on right side of cell - this is tapable - theres more to see
         accessoryType = .disclosureIndicator
         let padding: CGFloat = 12
