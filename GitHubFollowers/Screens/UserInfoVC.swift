@@ -113,7 +113,7 @@ class UserInfoVC: UIViewController {
 
 }
 
-extension UserInfoVC: ItemInfoVCDelegate {
+extension UserInfoVC: GFRepoItemInfoVCDelegate{
     // show safari view controller
     func didTapGitHubProfile(for user: User) {
         guard let url = URL(string: user.html_url) else {
@@ -122,7 +122,9 @@ extension UserInfoVC: ItemInfoVCDelegate {
         }
         presentSafariVC(with: url)
     }
-    
+}
+
+extension UserInfoVC: GFFollowerItemVCDelegate{
     // dismiss VC and tell follower list screen the new user
     func didTapGetFollowers(for user: User) {
         // show alert if user has 0 followers
@@ -133,5 +135,4 @@ extension UserInfoVC: ItemInfoVCDelegate {
         delegate.didRequestFollowers(for: user.login)
         dismissVC()
     }
-    
 }
