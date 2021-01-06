@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol UserInfoListVCDelegate: class {
+    func didRequestFollowers(for username: String)
+}
+
 class UserInfoVC: UIViewController {
     
     let headerView = UIView()
@@ -16,7 +20,7 @@ class UserInfoVC: UIViewController {
     let dateLabel = GFBodyLabel(textAlignment: .center)
     
     var username: String!
-    weak var delegate: FollowerListVCDelegate!
+    weak var delegate: UserInfoListVCDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
